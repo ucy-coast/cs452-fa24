@@ -218,13 +218,6 @@ $ parallel-ssh -i -h pssh_hosts -- sudo apt -y install nano
   <figcaption><p align="center">Figure. Ansible Architecture</p></figcaption>
 </figure>
 
-If you haven't already, please go ahead and clone the repository on `node0` like so:
-
-```
-$ git clone https://github.com/ucy-coast/cs452-fa24.git
-$ cd cs452-fa24/labs/02-tools/src
-```
-
 On Debian based distributions, you can install `ansible` using `apt`:
 
 ```
@@ -309,6 +302,20 @@ Finally, for tasks that require root privileges such as installing packages, we 
 The playbook uses several types of modules, many of which are self explanatory. The template module construct a file’s content using variables. Ansible uses the [Jinja2](http://jinja.pocoo.org/docs/) templating language.
 
 The `ansible-playbook` utility processes the playbook and instructs the nodes to perform the tasks, starting with an implicit invocation of the setup module, which collects system information for Ansible. Tasks are performed top-down and an error causes Ansible to stop processing tasks for that particular node.
+
+Before running the above playbook, if you haven't already, please go ahead and clone the repository on `node0` like so:
+
+```
+$ git clone https://github.com/ucy-coast/cs452-fa24.git
+```
+
+Navigate to the correct directory that contains the necessary files for running the playbook, including the hosts file, the playbook YAML file, and any other referenced files:
+
+```
+$ cd cs452-fa24/labs/02-tools/src
+```
+
+Execute the playbook using the command below:
 
 ```
 ansible-playbook -i ./hosts nginx.yml
